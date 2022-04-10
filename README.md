@@ -1,5 +1,7 @@
 # Rock-Paper-Scissors
-Completed Rock Paper Scissors Game that run in browser console.
+Currently working on Rock Paper Scissors Game that run in browser console.
+I plan to revisit this project in the future to improve and add Graphical User Interface.
+
 Rule of the game:
 - Open your browser console
 - The input prompt will appear in the top-center of your screen
@@ -9,4 +11,4 @@ Rule of the game:
 - It will determine the winner and display the result
 - Finally, the Game will run in loop for 5 times.
 
-Enjoy the Game.
+Enjoy!
