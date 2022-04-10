@@ -27,7 +27,22 @@ function userPlay() {
 
 const userSelection = userPlay(); // stored userPlay() return value to a variable to be use in playRound() parameter
 
+// Play a Single Round
+function playRound(userSelection, computerSelection) {
+    if (userSelection === computerSelection) {
+        return (`It's a tie. ${userSelection} = ${computerSelection}.`)
+    } else if ((userSelection === 'rock' && computerSelection === 'paper') ||  
+                (userSelection === 'paper' && computerSelection === 'scissors') ||
+                (userSelection === 'scissors' && computerSelection === 'rock') ) {
+                    return (`You lose & Computer wins. ${computerSelection} beats ${userSelection}.`);
+    } else if ((userSelection === 'rock' && computerSelection === 'scissors' ) ||
+                (userSelection === 'paper' && computerSelection === 'rock') || 
+                (userSelection === 'scissors' && computerSelection === 'paper')) {
+                    return (`You win & Computer loses. ${userSelection} beats ${computerSelection}.`);
+    }
+}
 
+console.log(playRound(userSelection, computerSelection)); // Invoke playRound()
 
 
 
