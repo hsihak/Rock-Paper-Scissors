@@ -16,14 +16,19 @@ function computerPlay() {
 
 function userPlay() {
     const userData = prompt ('Rock, Paper, Scissors. Please enter one of the options:', 'rock');
-    let editedUserData = userData.toLowerCase(); // Convert User's Input to lowercase 
-    if ((editedUserData !== 'rock') && 
-        (editedUserData !== 'paper') && 
-        (editedUserData !== 'scissors')) {
-            console.log('Invalid entry. Please enter one of the Options!'); 
+    if (userData !== '' && userData != null) {
+        let editedUserData = userData.toLowerCase(); // Convert User's Input to lowercase 
+        if ((editedUserData !== 'rock') && 
+            (editedUserData !== 'paper') && 
+            (editedUserData !== 'scissors')) {
+                console.log('Invalid entry. Please enter one of the Options!'); 
+        } else {
+            return editedUserData;
+        }        
     } else {
-        return editedUserData;
+        return alert('Canceled');
     }
+
 }
 
 // const userSelection = userPlay(); 
@@ -40,17 +45,19 @@ function playRound(userSelection, computerSelection) {
                 (userSelection === 'paper' && computerSelection === 'rock') || 
                 (userSelection === 'scissors' && computerSelection === 'paper')) {
                     return (`You win & Computer loses. ${userSelection} beats ${computerSelection}.`);
+    } else {
+        return ('No Winner. Missing User Input (Canceled).');
     }
 }
 
 // Loop Game 5 Times
 function game() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 1; i <= 5; i++) {
         let userSelection = userPlay(); // stored userPlay() return value to a variable to be use in playRound() parameter
-        console.log('User:', userSelection);
+        console.log(i, 'User:', userSelection);
         let computerSelection = computerPlay();
-        console.log('Computer:', computerSelection)
-        console.log(playRound(userSelection, computerSelection));// Invoke playRound() to display the result.
+        console.log(i, 'Computer:', computerSelection)
+        console.log('Result:', playRound(userSelection, computerSelection));// Invoke playRound() to display the result.
     }
 }
 
