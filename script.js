@@ -1,5 +1,17 @@
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+const userResult = document.querySelector('#userResult');
+const computerResult = document.querySelector('#computerResult');
+
+const resultContainer = document.querySelector('.result-container');
+
+const rockValue = rockBtn.dataset.value;
+const paperValue = paperBtn.dataset.value;
+const scissorsValue = scissorsBtn.dataset.value;
+
 // Computer Play
-function computerPlay() {
+const computerPlay = () => {
     const compRandom = Math.floor(Math.random() * 3) + 1; // Generate random number between 1 to 3
     if (compRandom === 1) {
         return ('rock');
@@ -10,57 +22,42 @@ function computerPlay() {
     }
 }
 
-// const computerSelection = computerPlay(); // stored computerPlay() return value to a variable to be use in playRound() parameter
-
-// User Play
-
-function userPlay() {
-    const userData = prompt ('Rock, Paper, Scissors. Please enter one of the options:', 'rock');
-    if (userData !== '' && userData != null) {
-        let editedUserData = userData.toLowerCase(); // Convert User's Input to lowercase 
-        if ((editedUserData !== 'rock') && 
-            (editedUserData !== 'paper') && 
-            (editedUserData !== 'scissors')) {
-                console.log('Invalid entry. Please enter one of the Options!'); 
-        } else {
-            return editedUserData;
-        }        
-    } else {
-        return alert('Canceled');
-    }
-
+// Play Single Round
+function playRound(userClicked, computerPlay) {
+    userResult.textContent = userClicked;
+    computerResult.textContent = computerPlay;
+    if (userClicked === computerPlay) {
+        let newDiv = document.createElement('div');
+        newDiv.className = 'newDiv';
+        resultContainer.appendChild(newDiv);
+        return newDiv.textContent = `${userClicked} vs ${computerPlay} = it's a tie`;
+    } else if ((userClicked === 'rock' && computerPlay === 'scissors') || 
+                (userClicked === 'paper' && computerPlay === 'rock') || 
+                (userClicked === 'scissors' && computerPlay === 'paper')) {
+                    let newDiv = document.createElement('div');
+                    newDiv.className = 'newDiv';
+                    resultContainer.appendChild(newDiv);
+                    return newDiv.textContent = `${userClicked} vs ${computerPlay} = You won`;
+    } else if ((userClicked === 'rock' && computerPlay === 'paper') ||
+                (userClicked === 'paper' && computerPlay === 'scissors') ||
+                (userClicked === 'scissors' && computerPlay === 'rock')) {
+                    let newDiv = document.createElement('div');
+                    newDiv.className = 'newDiv';
+                    resultContainer.appendChild(newDiv);
+                    return newDiv.textContent = `${userClicked} vs ${computerPlay} = You lost`;
+                }
 }
 
-// const userSelection = userPlay(); 
-
-// Play a Single Round
-function playRound(userSelection, computerSelection) {
-    if (userSelection === computerSelection) {
-        return (`It's a tie. ${userSelection} = ${computerSelection}.`)
-    } else if ((userSelection === 'rock' && computerSelection === 'paper') ||  
-                (userSelection === 'paper' && computerSelection === 'scissors') ||
-                (userSelection === 'scissors' && computerSelection === 'rock') ) {
-                    return (`You lose & Computer wins. ${computerSelection} beats ${userSelection}.`);
-    } else if ((userSelection === 'rock' && computerSelection === 'scissors' ) ||
-                (userSelection === 'paper' && computerSelection === 'rock') || 
-                (userSelection === 'scissors' && computerSelection === 'paper')) {
-                    return (`You win & Computer loses. ${userSelection} beats ${computerSelection}.`);
-    } else {
-        return ('No Winner. Missing User Input (Canceled).');
-    }
+// Handle User Clicked
+function userClicked(userSelection) {
+    return playRound(userSelection, computerPlay());
 }
 
-// Loop Game 5 Times
-function game() {
-    for (let i = 1; i <= 5; i++) {
-        let userSelection = userPlay(); // stored userPlay() return value to a variable to be use in playRound() parameter
-        console.log(i, 'User:', userSelection);
-        let computerSelection = computerPlay();
-        console.log(i, 'Computer:', computerSelection)
-        console.log('Result:', playRound(userSelection, computerSelection));// Invoke playRound() to display the result.
-    }
-}
+// Listen for the button 
+rockBtn.addEventListener('click', () => userClicked (rockValue));
+paperBtn.addEventListener('click', () => userClicked (paperValue));
+scissorsBtn.addEventListener('click', () => userClicked (scissorsValue));
 
-game(); // Invoke game() so that as soon as the page is loaded. It will start the game
+
 
 

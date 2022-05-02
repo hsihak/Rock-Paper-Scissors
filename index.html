@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css" />
     <script src="./script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Rock Paper Scissors</h1>
     <div class="results-container">
-        <p>User Choice: <span id="userResult"></span></p>
-        <p>Computer Choice: <span id="computerResult"></span></p>
+      <p>User Choice: <span id="userResult"></span></p>
+      <p>Computer Choice: <span id="computerResult"></span></p>
     </div>
     <!-- Rock = &#x1FAA8 -->
     <div class="choices-container">
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissors</button>
+      <button id="rock" data-value="rock">Rock</button>
+      <button id="paper" data-value="paper">Paper</button>
+      <button id="scissors" data-value="scissors">Scissors</button>
     </div>
-</body>
+    <div class="result-container"></div>
+  </body>
 </html>
