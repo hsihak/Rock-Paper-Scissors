@@ -11,14 +11,21 @@
   <body>
     <h1>Rock Paper Scissors</h1>
     <div class="results-container">
-      <p>User Choice: <span id="userResult"></span></p>
-      <p>Computer Choice: <span id="computerResult"></span></p>
+      <!-- First to reach 5 points win the game -->
+
+      <p>User Score: <span id="userResult"></span></p>
+      <p>Computer Score: <span id="computerResult"></span></p>
     </div>
     <div class="choices-container">
-      <button id="rock" data-value="rock">✋</button>
-      <button id="paper" data-value="paper">✌️</button>
-      <button id="scissors" data-value="scissors">✊</button>
+      <h3>Choose Your Weapon</h3>
+      <button id="rock" data-value="rock">✊</button>
+      <button id="paper" data-value="paper">✋</button>
+      <button id="scissors" data-value="scissors">✌️</button>
     </div>
-    <div class="result-container"></div>
+    <div class="outcome-container">
+      <p id="instruction">
+        <strong>How to play:</strong> First to reach 5 points win
+      </p>
+    </div>
   </body>
 </html>
