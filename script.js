@@ -20,12 +20,6 @@ function userClicked(userSelection) {
     return playRound(userSelection, computerPlay());
 }
 
-// Listen for the button 
-rockBtn.addEventListener('click', () => userClicked (rockValue));
-paperBtn.addEventListener('click', () => userClicked (paperValue));
-scissorsBtn.addEventListener('click', () => userClicked (scissorsValue));
-
-
 // Computer Play
 const computerPlay = () => {
     const compRandom = Math.floor(Math.random() * 3) + 1; // Generate random number between 1 to 3
@@ -76,17 +70,46 @@ function makeNewDiv (result) {
     return scoreTracker.textContent = `${result}`;
 }
 
+// Start EventListener Fn
+function eventListener () {
+    return buttons.forEach(button => { button.addEventListener('click', () => userClicked((button.dataset.value)))
+    });
+}
+
+eventListener();
+
+// removeEventListener Fn
+function removeEventListener () {
+    buttons.forEach(button => button.setAttribute('disabled', ''));
+    let resetButton = document.createElement('button');
+    resetButton.textContent = 'Play Again?';
+    resetButton.classList = 'replay-btn';
+    resultContainer.appendChild(resetButton);
+    return playAgainListener();
+}
+
+// Listen to playAgain? Fn 
+function playAgainListener () {
+    const replayBtn = document.querySelector('.replay-btn');
+    return replayBtn.addEventListener('click', () => window.location.reload());
+}
+
 //Display running score
 function trackScore (userScore, computerScore) {
     console.log(userScore, computerScore);
     if (userScore === 5 && computerScore === 5) {
-        return makeNewDiv(`It's a tie`);
+        makeNewDiv(`It's a tie`);
+        return removeEventListener ();
     } else if (userScore === 5 && computerScore < 5) {
-        return makeNewDiv(`You won`);
+        makeNewDiv(`You won`);
+        return removeEventListener ();
     } else if (userScore < 5 && computerScore === 5) {
-        return makeNewDiv(`You lost`);;
+        makeNewDiv(`You lost`);
+        return removeEventListener ();
     };
 }
+
+
 
 
 
